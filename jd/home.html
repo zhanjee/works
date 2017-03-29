@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>单页面应用程序</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/font-awesome.css"/>
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet"/>
+    <!--引入库文件-->
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <!--引入主程序文件-->
+    <script src="js/app.js"></script>
+    <script src="js/jd.js"></script>
+
+
+</head>
+<body>
+
+<div class="header">
+    <div class="top">
+        <div class="top_inner">
+            <div class="address">送至：北京<span>&or;</span></div>
+            <ul class="menu">
+                <li><a href="#" class="login">你好，请登录</a><a href="#" class="changecolor">免费注册</a></li>
+                <li class="line"></li>
+                <li><a href="#">我的订单</a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#">我的京东<span>&or;</span></a></li>
+                <li class="line"></li>
+                <li><a href="#">京东会员</a></li>
+                <li class="line"></li>
+                <li><a href="#">企业采购</a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#"><span class="mobile"></span>手机京东<span>&or;</span></a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#">关注京东<span>&or;</span></a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#">客户服务<span>&or;</span></a></li>
+                <li class="line"></li>
+                <li class="bg"><a href="#">网站导航<span>&or;</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mid clearfix">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo-201305.png"></a>
+        </div>
+        <div class="search">
+            <form>
+                <input type="search" value="卡通手机壳" class="sea"><input type="submit" value="搜索" class="sub">
+            </form>
+            <div class="tags">
+                <a href="#" class="active">七夕礼品</a>
+                <a href="#">消暑神器</a>
+                <a href="#">农用物资</a>
+                <a href="#">鲜花99元</a>
+                <a href="#">电影京券</a>
+                <a href="#">防晒喷雾</a>
+                <a href="#">永生花</a>
+                <a href="#">小米电脑</a>
+                <a href="#">thinkpad</a>
+            </div>
+        </div>
+        <div class="buy">
+            <a href="#">我的购物车</a>
+            <i>></i>
+            <div class="number">0</div>
+        </div>
+    </div>
+    <div class="bot clearfix">
+        <div class="list">全部商品分类</div>
+        <ul>
+            <li><a href="#">服装城</a></li>
+            <li><a href="#">美妆馆</a></li>
+            <li><a href="#">京东超市</a></li>
+            <li><a href="#">生鲜</a></li>
+            <li><a href="#">全球购</a></li>
+            <li><a href="#">闪购</a></li>
+            <li><a href="#">团购</a></li>
+            <li><a href="#">拍卖</a></li>
+            <li><a href="#">金融</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="bg-info">
+    <div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/productList" style="color:orange;font-size:20px;"><i class="fa fa-home"></i> 浏览商品</a></li>
+                    <li ng-controller="cartCtrl">
+                        <a href="#/shopCart" style="color:orange;font-size:20px;"><i class="fa fa-shopping-cart"></i> 查看购物车-
+                        [{{count()}}个商品,总金额:{{money() | currency:"￥"}}元]</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div id="main" class="container">
+    <div ng-view></div>
+</div>
+
+</body>
+</html>

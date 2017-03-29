@@ -1,0 +1,108 @@
+
+*{margin:0;padding:0;}
+ul{list-style:none}
+a{text-decoration:none}
+img{border:none}
+.inner{width:1140px;margin:0 auto;transition:all 0.5s linear;}
+header{position:absolute;width:100%;z-index:2;}
+header .inner{width:1140px;height:64px;line-height:64px;margin:0 auto;}
+.logo{float:left;width:120px;padding-top:11px;}
+.logo img{width:100%}
+.tel{float:right;font-size:20px;color:#fff;}
+.video{height:600px;overflow:hidden;position:relative;}
+.video video{width:100%;height:100%;object-fit: cover;object-position:0}
+/*display:table;  转成表格*/
+.text{width:100%;height:100%;position:absolute;top:0;left:0;text-align:center;}
+/*display:table-cell;   让标签元素以表格单元格的形式呈现，类似于td标签*/
+.text .middle{width:100%;height:100%;display:table;}
+.middle h2{color:orange;font-size:40px;display:table-cell;vertical-align: middle;}
+.why{background:#e8e8e8;text-align:center;font-family: arial;}
+.why h2,.how h2{font-size:29px;color:#ef4d4d;line-height:69px;padding-top:32px;}
+.why .pp,.how .pp{font-size:16px;color:#6d5252;line-height:21px;width:550px;margin:0 auto;}
+.why .box{padding:35px 0 50px 0;}
+.why .box .box1{width:360px;height:324px;text-align:center;float:left;background:#fff;box-shadow: 1px 3px 0 0 #cdcdcd;position:relative;z-index:2;transition:all 0.5s linear;}
+.why .box .box1:nth-child(2){margin:0 29px;}
+.why .box .box1 img{width:110px;}
+.why .box .box1:before{content:'';width:180px;height:180px;border-radius: 50%;background:#fff;position:absolute;top:-30px;left:50%;transform:translateX(-50%);z-index:-1;}
+.clearfix:after{content:'.';
+    display:block;;
+    height:0;
+    font-size:0;
+    /*visibility: hidden; 元素不可见*/
+    visibility: hidden;
+    clear:both;
+}
+.why .box .box1 h2{font-size: 29px;color:#7d7d7d;line-height:50px;padding-top:10px;}
+.why .box .box1 p{line-height:24px;color:#7d7d7d;font-size: 16px;}
+.content{height:360px;text-align:center;background:rgba(97,109,44,89) url(../images/testimonial.jpg) no-repeat center top/cover;background-blend-mode: multiply;}
+.content .fa-quote-left{font-size:24px;color:#fff;padding-top:70px;}
+.content .fa-star{font-size:15px;color:orange;padding-top:30px;}
+.content p{font-size: 18px;color:#fff;line-height:26px;padding-top:64px;}
+.how{text-align:center;width:1154px;margin:0 auto;font-family: arial;padding-bottom:50px;}
+.how .pp{width:auto;padding-bottom:40px;}
+.how .con{width:224px;min-height:250px;position:relative;float:left;text-align:left;padding:0 30px;margin-right:6px;transition:all 0.5s linear;}
+.how .con:nth-child(4){margin-right:0;}
+.how .con:before{content:'';width:100%;height:50%;background:#f1f1f1;position:absolute;top:0;left:0;z-index:-1;transform: skewX(15deg)}
+.how .con:after{content:'';width:100%;height:50%;background:#f1f1f1;position:absolute;top:50%;left:0;z-index:-1;transform: skewX(-15deg)}
+.con .pic{text-align: right;padding:10px 0 5px 0;}
+.con img{width:31px;}
+.con h3{line-height:44px;font-size:22px;color:#525252;font-weight: normal}
+.con p{line-height:25px;font-size:15px;color:#aaa;}
+footer{height:250px;background:#5d5d5d;font-family: arial;}
+footer ul{width:244px;float:left;padding-top:34px;}
+footer ul:nth-child(1){padding-left:97px;}
+footer ul li{font-size:15px;line-height:31px;}
+footer ul li a{color:#fff;}
+footer ul li a:hover{text-decoration: underline;color:#c81620;}
+footer .inner ul li a i{display:inline-block;width:24px;height:24px;margin-right:4px;text-align:center;border-radius: 50%;background:#6a6a6a;line-height:24px; }
+.bottom{background:#444444;line-height:50px;height:50px;font-size: 14px;color:#7d7d7d;font-family: arial;text-align: center}
+
+
+@media screen and (max-width:1200px){
+    .video{height:auto}
+}
+
+@media screen and (max-width:1156px){
+    .how{width:96%}
+    .how .con{width:19%;padding:0 2.5%;margin-right:0.5%;}
+    .bottom{height:auto;}
+}
+
+@media screen and (max-width:1140px){
+    header .inner{width:96%}
+    .inner{width:96%}
+    .why .box .box1{width:31%}
+    .why .box .box1:nth-child(2){margin:0 2.5%;}
+    footer ul{width:21%}
+}
+
+@media screen and (max-width:1024px){
+    .why .pp{width:auto}
+    .why .box .box1{width:80%;float:none;margin:0 auto;}
+    .why .box .box1:nth-child(2){margin:0 auto;}
+    .how .con{width:80%;float:none;margin:0 auto 1px auto;min-height:auto;padding-bottom:20px;}
+    .how .con:before,.how .con:after{transform: skewX(0deg) }
+    .how .con:nth-child(4){margin-right:auto;}
+    .con .pic{text-align: center}
+    footer .inner{width:80%}
+    footer ul{width:33%}
+    footer ul:nth-child(1){padding-left:0}
+    footer ul:nth-child(4){width:100%;}
+    footer ul:nth-child(4) li{float:left}
+    footer ul:nth-child(4) li span{display:none}
+}
+
+@media screen and (max-width:768px){
+    .why .box .box1{width:100%}
+    .how .con{width:95%}
+}
+@media screen and (max-width:640px){
+    .middle h2{font-size:30px;}
+    footer{height:auto;padding-bottom:20px;}
+}
+
+@media screen and (max-width:480px){
+    .middle h2{font-size:20px;}
+}
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width:980px;
+            height:500px;
+            position:absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto;
+
+            transform-style: preserve-3d;
+            perspective: 6000px;
+        }
+        .item{
+            height:100%;
+            position:absolute;
+            transition:transform 0.4s;
+        }
+    </style>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function(){
+            var itemCount=5;
+            var items=$(".item");
+            init();
+            function init(){
+                var box=$(".box");
+                var w=box.width()/itemCount;
+                for(var i=0;i<4;i++){
+                    var slide=$("<div class='slide'></div>").appendTo(box);
+                    for(var j=0;j<itemCount;j++){
+                        var deg=i*90;
+                        $("<div class='item'></div>")
+                                .width(w)
+                                .css({
+                                    "background-image":"url('images/"+i+".jpg')",
+                                    "left":(w*j)+"px",
+                                    "background-position":-w*j+"px",
+                                    "transform":"rotateX("+deg+"deg) translateZ(250px)",
+                                    "transition":"transform 0.4s "+j*0.1+"s"
+                                })
+                                .appendTo(slide)
+                    }
+                }
+            }
+            var count=0;
+            function rotate(){
+                count++;
+                $(".slide").each(function(index){
+                    var degree=90*(index-count);
+                    $(this).find(".item").css("transform","rotateX("+degree+"deg) translateZ(250px)")
+                })
+            }
+            $("body").click(rotate)
+
+        })
+    </script>
+</head>
+<body>
+<div class="box">
+
+</div>
+</body>
+</html>

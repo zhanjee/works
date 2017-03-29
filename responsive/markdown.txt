@@ -1,0 +1,10 @@
+ markdown:基础语法参考
+ 
+ http://www.appinn.com/markdown/basic.html 
+ https://maxiang.io/#/?id=readme
+ http://www.jianshu.com/p/815788f4b01d#
+ http://www.cnblogs.com/hnrainll/p/3514637.html    
+
+ 编辑工具：
+ 
+ https://maxiang.io  可以导出html，pdf，md格式文件  http://mahua.jser.me/

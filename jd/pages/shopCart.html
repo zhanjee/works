@@ -1,0 +1,50 @@
+<!--查看购物车子页面-->
+<div class="panel panel-info">
+    <div class="panel-heading">查看购物车</div>
+    <div class="panel-body">
+        <p class="well" ng-show="cart.length==0" style="coloe:#ccc;font-size: 20px;">
+            您的购物车中还没有商品。快去<a href="#/productList" style="color:#c81620;font-size:30px;text-decoration: none">买!买!买!</a>哦!!!
+        </p>
+
+        <table class="table table-striped" ng-show="cart.length>0">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>出厂日期</th>
+                <th>购买数量</th>
+                <th>小计</th>
+                <th>预览</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in cart">
+                <td>{{$index + 1}}</td>
+                <td>{{item.product.name}}</td>
+                <td>{{item.product.price | currency:"￥"}}</td>
+                <td>{{item.product.date | date:"yyyy年MM月dd日 HH:mm:ss"}}</td>
+                <td>{{item.number}}</td>
+                <td>{{item.number * item.product.price | currency:"￥"}}</td>
+                <td><img ng-src="images/{{item.product.imgsrc}}"/></td>
+                <td>
+                    <button class="btn btn-link" ng-click="remove(item.product.name)" style="color:#c81620;font-size: 15px;">删除</button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th></th>
+                <th>总计:</th>
+                <th></th>
+                <th></th>
+                <th>{{count()}}</th>
+                <th>{{money() | currency:"￥"}}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

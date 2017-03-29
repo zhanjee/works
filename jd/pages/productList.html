@@ -1,0 +1,43 @@
+<!--商品列表显示子页面-->
+<div class="panel panel-info">
+    <div class="panel-heading">显示商品</div>
+    <div class="panel-body">
+        <ul ng-repeat="product in products">
+            <li style="float:left;margin-right:70px;text-align:center;">
+                <a href="#" style="text-decoration: none">
+                    <img ng-src="images/{{product.imgsrc}}"/>
+                    <div style="font-size: 15px;color:#985f0d;">{{product.name}}</div>
+                    <div style="color:red">{{product.price|currency:"￥"}}</div>
+                    <a href="#/detail?name={{product.name}}" style="font-size:20px;color:#c81620 ;text-decoration: none;">详情</a>
+                </a>
+            </li>
+        </ul>
+
+        <!--<table class="table table-striped">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th>#</th>-->
+                <!--<th>商品名称</th>-->
+                <!--<th>商品价格</th>-->
+                <!--<th>操作系统</th>-->
+                <!--<th>出厂日期</th>-->
+                <!--<th>预览</th>-->
+                <!--<th>操作</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr ng-repeat="product in products">-->
+                <!--<td>{{$index + 1}}</td>-->
+                <!--<td>{{product.name}}</td>-->
+                <!--<td>{{product.price | currency:"￥"}}</td>-->
+                <!--<td>{{product.os | uppercase}}</td>-->
+                <!--<td>{{product.date | date:"yyyy年MM月dd日 HH:mm:ss"}}</td>-->
+                <!--<td><img ng-src="images/{{product.imgsrc}}"/></td>-->
+                <!--<td>-->
+                    <!--<a href="#/detail?name={{product.name}}">详情</a>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    </div>
+</div>

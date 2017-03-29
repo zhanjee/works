@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{background:#000;}
+        .gallery{
+            width:980px;
+            height:500px;
+            position:absolute;
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+            margin:auto;
+        }
+        .item{
+            width:196px;
+            height:100px;
+            position: absolute;
+            background:#fff;
+            transition: transform .8s;
+        }
+        .item .pic{
+            width:100%;
+            height:100%;
+            transition: transform .8s ease-in .8s;
+        }
+    </style>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function(){
+            init();
+            showAll();
+            var items=$(".item");
+            var k=true;
+            var animateSpeed=2000;
+            items.on("click",function(){
+//                if(k){
+//                    var index=items.index(this);
+//                    showPic(index)
+//                }else{
+//                    showAll()
+//                }
+//                k=!k;
+                var index=items.index(this);
+                items.each(function(){
+                    var r=Math.random()*1000;
+                    if(k){
+                        $(this).delay(r).animate({"opacity":"0.5"},animateSpeed,"linear",function(){
+                            showPic(index)})
+                                .animate({"opacity":"1"},1000)
+                    }
+                    else{
+                        $(this).animate({"opacity":"0.5"},animateSpeed,"linear",function(){
+                            showAll()
+                        })
+                               .delay(r).animate({"opacity":"1"},1000)
+                    }
+
+                })
+                k=!k;
+                })
+            function init(){
+                var gallery=$(".gallery");
+                for(var i=0;i<25;i++){
+                    var x=i%5;
+                    var y=parseInt(i/5);
+                    $("<div class='item'><div class='pic'></div></div>")
+                            .css({"left":function(){
+                                return x*196+"px";
+                            },    "top":function(){
+                                return y*100+"px";
+                            }})
+                            .appendTo(gallery)
+                }
+            }
+
+            function showAll(){
+                var pics=$(".item .pic");
+                pics.css("background-size","cover").each(function(i){
+                    $(this).css("background-image","url('images/"+i+".jpg')")
+                })
+
+                $(".pic").css("transform","scale(0.95)");
+                $(".item").each(function(i){
+                    var x=i%5;
+                    var y=parseInt(i/5);
+                    var offsetX=50*x-100;
+                    var offsetY=50*y-100;
+                    var rotate=Math.random()*80-40;
+                    $(this).css("transform","translate("+offsetX+"px, "+offsetY+"px) rotate("+rotate+"deg)");
+                })
+            }
+
+            function showPic(index){
+                var pics=$(".item .pic");
+                pics.css({"background-image":"url('images/"+index+".jpg')","background-size":"auto"})
+                        .each(function(i){
+                            var x=i%5;
+                            var y=parseInt(i/5);
+                            $(this).css("background-position",function(){
+                                return x*-196+"px "+ y*-100+"px";
+                            })
+                        })
+
+                $(".pic").css("transform","scale(1)");
+                $(".item").each(function(){
+                    $(this).css("transform","translate(0) rotate(0deg)");
+                })
+            }
+
+
+        })
+    </script>
+</head>
+<body>
+<div class="gallery">
+
+</div>
+</body>
+</html>
