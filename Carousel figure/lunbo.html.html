@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片轮播jQuery版</title>
+    <style>
+        #banner {
+            width: 570px;
+            height: 270px;
+            margin: 100px auto 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #banner-pic a {
+            position: absolute;
+        }
+
+        /* 下面是导航按钮的样式 */
+        #banner-nav {
+            position: absolute;
+            z-index: 99999;
+            right: 5px;
+            bottom: 5px;
+            font-weight: 700;
+            font-family: Arial;
+        }
+
+        #banner-nav span {
+            display: block;
+            float: left;
+            margin-left: 5px;
+            padding: 0 5px;
+            background: #000;
+            cursor: pointer;
+        }
+
+        #banner-nav .normal {
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            color: #999;
+            border: 1px solid #999;
+            margin-top: 4px;
+        }
+
+        #banner-nav .current {
+            height: 24px;
+            line-height: 24px;
+            font-size: 20px;
+            color: #FF5300;
+            border: 1px solid #FF5300;
+        }
+    </style>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script>
+        /*
+         这里改用事件触发机制，在playBanner()方法中，周期性地触发按钮事件。
+         因此，只需要编写按钮mouseover事件响应即可。
+         */
+        $(function () {
+            carousel();
+        });
+
+        var currentZIndex = 1;   // 代表当前最大的z-index
+        var currentPicIndex = 0; // 代表当前焦点图片的索引
+        var timer;          // 保存定时器变量
+        var delay = 3000;   // 图片切换的延时
+
+        function carousel() {
+            // 初始化banner
+            // 将第一张图片放在最上面
+            $("#banner-pic").find("a").first().css("zIndex", currentZIndex);
+
+            /****************以下为增加鼠标悬停事件响应********************/
+            // 添加鼠标悬停事件响应
+            $("#banner").hover(
+                function () {
+                    // 停止图片播放-清除定时器
+                    clearInterval(timer);
+                },
+                function () {
+                    playBanner();   // 继续播放
+                });
+
+            /****************以下为动态生成导航按钮********************/
+                // 动态生成导航按钮
+            var navContent = "";
+            $("#banner-pic").find("a").each(function (i) {
+                navContent += '<span class="normal">' + (i + 1) + '</span>';
+            });
+            // 将生成的5个span添加到banner-nav中，并为第一个span设置class=current
+            $("#banner-nav").html(navContent).children().first().removeClass().addClass("current");
+
+            /****************以下为导航按钮添加鼠标移入事件响应********************/
+            // 遍历按钮集合，为每个按钮添加鼠标移入事件响应
+            $("#banner-nav").find("span").each(function () {
+                $(this).on("mouseenter", function (e) {
+                    // 1)将当前按钮的样式设为.current;2)重置所有按钮的样式为.normal；
+                    $(this).removeClass().addClass("current").siblings().removeClass().addClass("normal");
+                    //获取哪个按钮被点击，也就是找到被点击按钮的索引值
+                    var index = $(this).index();
+
+                    //3)将对应位置的图片，动态滑入;向右偏移570px,将该图片的z-index值提升
+                    $("#banner-pic").find("a").eq(index).css({left: "570px", zIndex: currentZIndex++})
+                        .animate({left: "0px"});
+
+                    // 将刚滑入的图片的索引设为当前焦点图片的索引
+                    currentPicIndex = index;
+                    e.stopPropagation();    // 阻止事件传播
+                });
+            });
+
+            /****************以下为执行图片播放********************/
+            playBanner();       //开始执行图片幻灯切换
+        }
+
+        // 轮播图片的方法
+        function playBanner() {
+            var picNum = $("#banner-pic").find("a").length;
+
+            clearInterval(timer);
+            timer = setInterval(anim, delay);
+
+            function anim() {
+                // 选取下一张图片
+                var nextIndex = currentPicIndex + 1;
+                if (nextIndex == picNum) {
+                    nextIndex = 0;
+                }
+
+                //模拟触发数字按钮的mouseover - 在匹配的对象上触发指定的事件
+                $("#banner-nav").find("span").eq(nextIndex).trigger("mouseenter");
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="banner">
+    <!-- 图片集 -->
+    <div id="banner-pic">
+        <a href="#"><img src="images/slide-1.jpg"></a>
+        <a href="#"><img src="images/slide-2.jpg"></a>
+        <a href="#"><img src="images/slide-3.jpg"></a>
+        <a href="#"><img src="images/slide-4.jpg"></a>
+        <a href="#"><img src="images/slide-5.jpg"></a>
+    </div>
+
+    <!-- 导航按钮 -->
+    <div id="banner-nav"></div>
+</div>
+</body>
+</html>
